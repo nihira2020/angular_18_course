@@ -1,0 +1,38 @@
+<div style="margin-left: 5%;">
+    <h2>Couter value is : {{displayvalue}}</h2>
+</div>
+<ul>
+    @for(item of service.players();track item){
+    <li>{{item.id}} - {{item.name}}</li>
+    }
+</ul>
+<h2>We have {{totalplayers()}} players</h2>
+
+<h2>We have {{_totalplayer$ | async}} players</h2>
+<h2>We have {{_signalcount()}} players</h2>
+
+<!-- <div>
+    @if(totalplayers()==0){
+    <h1>No users</h1>
+    }
+    @else if(totalplayers()==1){
+    <h1>Single user</h1>
+    }
+    @else{
+    <h1>More users</h1>
+    }
+</div> -->
+
+<div>
+    @switch(totalplayers()){
+    @case (0) {
+        <h1>No users</h1>
+    }
+    @case (1) {
+        <h1>Single user</h1>
+    }
+    @default {
+        <h1>More users</h1>
+    }
+    }
+</div>

@@ -1,0 +1,16 @@
+<div>
+    <app-counterbtn></app-counterbtn>
+</div>
+
+<div>
+    <app-counterdisplay></app-counterdisplay>
+</div>
+<div>
+    <ul>
+        @for(item of countries;track item;let i=$index;let c=$count;let e=$even){
+            <li [ngClass]="{'redclass':e,'greenclass':!e}">{{e}}-{{i}} - {{item}}</li>
+            
+        }
+    </ul>
+    
+</div>

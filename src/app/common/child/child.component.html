@@ -1,0 +1,12 @@
+<h2> Wlecome : {{firstName}} - {{lastName}}</h2>
+<h2>{{nameObj | json}}</h2>
+
+<br>
+<input #name>
+<br>
+<button (click)="dataupdater.emit(name.value)">Transfer</button>
+<ul>
+    @for(item of fruits;track item ){
+        <li>{{item}}</li>
+    }
+</ul>

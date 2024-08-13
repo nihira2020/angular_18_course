@@ -1,0 +1,81 @@
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>{{title | uppercase}}</mat-card-title>
+        <mat-card-subtitle>{{subtitle | lowercase}}</mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content>
+
+        <span>{{todaydate | date:'dd/MMM/yy'}}</span>
+        <br>
+        <span>{{salary | currency:'EUR'}}</span>
+        <br>
+        <span>{{salary | number:'1.2-2'}}</span>
+        <br>
+        <span>{{salary/100 | percent}}</span>
+        <br>
+        <span>{{subtitle | reverse}}</span>
+        <br>
+        <span>{{_obj | json}}</span>
+        <br>
+        <input type="checkbox" [checked]="isdisabled">
+        <input type="checkbox" checked={{isdisabled}}>
+        <br>
+        <!-- <input (keyup)="updatetitle($event)" /> -->
+        <input [(ngModel)]="title">
+        <br>
+        <button (click)="Changetitle()">Click here</button>
+        <br>
+        <div [ngClass]="{'active':isdisabled,'inactive':!isdisabled}">
+            <h2>Attribute directive</h2>
+        </div>
+
+        <div *ngIf="isshow">
+            <h2 [ngStyle]="{'color':_color,'font-size.px':_font}">Attribute directive</h2>
+        </div>
+
+        <div *ngFor="let item of ticketinfo" [ngStyle]="{'background-color':item.color,'color':'white'}">
+            <span>Id : {{item.id}}</span>
+           <h2>{{item.name | uppercase}}</h2> 
+
+        </div>
+        <div [ngSwitch]="_view">
+            <div *ngSwitchCase="'home'">
+                <h2>this is home view</h2>
+            </div>
+            <div *ngSwitchCase="'about'">
+                <h2>this is about view</h2>
+            </div>
+            <div *ngSwitchDefault>
+                <h2>this is default view</h2>
+            </div>
+
+        </div>
+        <div>
+            <ul>
+                @for(item of _custdata; track item){
+                    <li>{{item.name}}</li>
+                }
+               
+            </ul>
+        </div>
+
+        <div>
+            <input [(ngModel)]="firstname" placeholder="Firstname">
+            <br>
+            <input [(ngModel)]="lastname" placeholder="LastName">
+            <br>
+        </div>
+        <div>
+            <input placeholder="Friut name" #fruit>
+            <br>
+            <button (click)="addfruit(fruit.value)">Update</button>
+        </div>
+
+            <app-child [firstName]="firstname" [lastName]="lastname" [nameObj]="_obj" (dataupdater)="updatetitle1($event)"></app-child>
+        
+
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+</mat-card>

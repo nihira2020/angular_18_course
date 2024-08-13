@@ -1,0 +1,54 @@
+<form class="example-form" [formGroup]="registerform" (ngSubmit)="ProceedRegister()">
+    <mat-card>
+        <mat-card-header>
+            <h2>New Registeration</h2>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Username" formControlName="username">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Username" formControlName="password" type="password">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    @for (item of Roles; track item) {
+                      <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+                    }
+                  </mat-select>
+            </mat-form-field>
+            <div>
+                <mat-radio-group aria-label="Select an option" formControlName="gender">
+                    <mat-radio-button color="primary" value="m">Male</mat-radio-button>
+                    <mat-radio-button value="f">Female</mat-radio-button>
+                    <mat-radio-button color="warn" value="o">Others</mat-radio-button>
+                  </mat-radio-group>
+            </div>
+            <div>
+                <section class="example-section" >
+                    <mat-checkbox color="primary" formControlName="terms" class="example-margin">Agree terms and conditions</mat-checkbox>
+                  </section>
+                  
+            </div>
+
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="submit" mat-raised-button color="primary">Register</button>
+            <a mat-raised-button color="accent" routerLink="/login">Login</a>
+        </mat-card-actions>
+
+    </mat-card>
+</form>

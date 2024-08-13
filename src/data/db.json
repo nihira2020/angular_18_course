@@ -1,0 +1,75 @@
+{
+  "user": [
+    {
+      "id": "admin",
+      "name": "adminuser",
+      "password": "admin",
+      "role": "admin"
+    },
+    {
+      "id": "suser",
+      "name": "Sales user",
+      "password": "test",
+      "role": "salesman"
+    },
+    {
+      "id": "ntuser",
+      "password": "test1",
+      "name": "Nt User",
+      "role": "salesman",
+      "gender": "m",
+      "email": "nt@in.com"
+    }
+  ],
+  "product": [
+    {
+      "id": 1,
+      "name": "Cricket bat",
+      "description": "High quality we can use for leather ball",
+      "price": 10000,
+      "status": true
+    },
+    {
+      "id": 3,
+      "name": "Stumber ball",
+      "description": "Rubber ball",
+      "price": "60",
+      "status": true
+    },
+    {
+      "id": 4,
+      "name": "Stumb",
+      "description": "New",
+      "price": "1000",
+      "status": true
+    },
+    {
+      "id": 5,
+      "name": "Mat",
+      "description": "New",
+      "price": "10000",
+      "status": true
+    },
+    {
+      "id": 6,
+      "name": "Keeping clove",
+      "description": "clove new",
+      "price": "300",
+      "status": true
+    },
+    {
+      "id": 7,
+      "name": "Batting clove",
+      "description": "Clove",
+      "price": "1000",
+      "status": true
+    },
+    {
+      "id": 8,
+      "name": "Jercy",
+      "description": "Red color",
+      "price": "100",
+      "status": true
+    }
+  ]
+}
