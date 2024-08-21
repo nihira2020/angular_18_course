@@ -12,6 +12,13 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class CustomerComponent {
   userinput='';
+  isloading=false;
+  count=1;
+
+  load(){
+    this.isloading=true;
+    this.count++;
+  }
 
   cannavigate(){
     console.log(this.userinput)
