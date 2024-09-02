@@ -1,0 +1,15 @@
+
+
+<mat-card>
+    <mat-card-header style="background-color: blue;">
+        <ng-content select=".head">Data available soon</ng-content>
+    </mat-card-header>
+    <mat-card-content>
+        <ng-content select=".content">
+            Data available soon
+        </ng-content>
+    </mat-card-content>
+    <mat-card-footer style="background-color: grey;">
+        <ng-content select=".foot"><h2>Data available soon</h2></ng-content>
+    </mat-card-footer>
+</mat-card>

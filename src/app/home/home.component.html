@@ -1,6 +1,6 @@
 <mat-card appearance="outlined">
     <mat-card-header>
-        <mat-card-title>{{title | uppercase}}</mat-card-title>
+        <mat-card-title>{{title1() | uppercase}}</mat-card-title>
         <mat-card-subtitle>{{subtitle | lowercase}}</mat-card-subtitle>
 
     </mat-card-header>
@@ -61,9 +61,9 @@
         </div>
 
         <div>
-            <input [(ngModel)]="firstname" placeholder="Firstname">
+            <input placeholder="Firstname">
             <br>
-            <input [(ngModel)]="lastname" placeholder="LastName">
+            <input placeholder="LastName">
             <br>
         </div>
         <div>

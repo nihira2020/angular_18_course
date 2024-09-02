@@ -1,0 +1,18 @@
+
+<app-childnew>
+    <h1 class="head">Welcome to nihira Techiees</h1>
+    <p class="content">Software tutorial provider</p>
+    <h2 class="foot">Powered by NT</h2>
+</app-childnew>
+<br>
+
+<app-childnew>
+    <h1 class="head">Welcome to Angular Course</h1>
+    <p class="content">Angular 18</p>
+</app-childnew>
+<app-childnew></app-childnew>
+<ul>
+    @for(item of ticketinfo$ | async;track item){
+        <li>{{item.name}}</li>
+    }
+</ul>

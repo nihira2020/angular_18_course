@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ProductService } from '../../service/product.service';
-import { Products } from '../../model/Productmodel';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -9,31 +7,33 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { AddproductComponent } from '../addproduct/addproduct.component';
-import { catchError, of, Subscription } from 'rxjs';
+import { Products } from '../../model/Productmodel';
+import { Store } from '@ngrx/store';
+import { deleteProducts, loadProducts } from '../../_store/Product.Action';
+import { getproductlist } from '../../_store/Product.Selector';
+import { AddproductnewComponent } from '../addproductnew/addproductnew.component';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-newproduct',
   standalone: true,
   imports: [MatCardModule, MatTableModule, MatPaginatorModule, MatSortModule,
-    MatButtonModule, MatInputModule, CommonModule, MatDialogModule
-  ],
-  templateUrl: './product.component.html',
-  styleUrl: './product.component.css'
+    MatButtonModule, MatInputModule, CommonModule, MatDialogModule],
+  templateUrl: './newproduct.component.html',
+  styleUrl: './newproduct.component.css'
 })
-export class ProductComponent implements OnInit,OnDestroy {
-
+export class NewproductComponent implements OnDestroy {
   displayedColumns: string[] = ['id', 'name', 'description', 'price', 'status', 'action'];
   dataSource!: MatTableDataSource<Products>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  subscription=new Subscription();
+  subscription!:Subscription;
 
-  constructor(private service: ProductService, private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private store: Store) {
 
   }
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription.unsubscribe()
   }
   ngOnInit(): void {
     this.Loadproducts();
@@ -42,20 +42,13 @@ export class ProductComponent implements OnInit,OnDestroy {
   productlist: Products[] = []
 
   Loadproducts() {
-   let sub1= this.service.GetAll().pipe(
-    catchError(err=>{
-      console.log(err.message);
-      return of([])
-    })
-   ).subscribe(item => {
+    this.store.dispatch(loadProducts());
+    this.subscription=this.store.select(getproductlist).subscribe(item => {
       this.productlist = item;
       this.dataSource = new MatTableDataSource(this.productlist);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
-
-    
-    this.subscription.add(sub1);
   }
 
   Createproduct() {
@@ -65,7 +58,7 @@ export class ProductComponent implements OnInit,OnDestroy {
 
   Openpopup(id: number, title: string) {
 
-    this.dialog.open(AddproductComponent, {
+    this.dialog.open(AddproductnewComponent, {
       width: '40%',
       enterAnimationDuration: '1000ms',
       exitAnimationDuration: '1000ms',
@@ -74,18 +67,14 @@ export class ProductComponent implements OnInit,OnDestroy {
         title: title
       }
     }).afterClosed().subscribe(item => {
-      this.Loadproducts();
+     // this.Loadproducts();
     });
   }
 
   DeleteProduct(id: number) {
 
     if(confirm('Do you want to remove?')){
-     let sub2= this.service.Removeproduct(id).subscribe(item=>{
-        alert('Removed successfully.')
-        this.Loadproducts();
-      });
-      this.subscription.add(sub2)
+      this.store.dispatch(deleteProducts({id:id}));
     }
 
   }

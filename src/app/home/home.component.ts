@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { ReversePipe } from '../custom/reverse.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
@@ -18,13 +18,17 @@ export class HomeComponent {
 
   constructor(private service: MasterService) {
    this.Getallcustomer();
+   setTimeout(()=>{
+    this.title1.set("Angular for begginners");
+   },10000)
   }
   _custdata!: Customers[];
 
   @ViewChild(ChildComponent) _child!:ChildComponent;
 
 
-  title = 'Angular 18 Tutorail';
+  title = 'Angular 18 Tutorial';
+  title1 =signal<string>('Angular 18 Tutorial');
   subtitle = 'Angular for begginers'
   todaydate = new Date();
   salary = 1000233444;

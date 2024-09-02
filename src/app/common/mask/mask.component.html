@@ -1,0 +1,51 @@
+<h1>Angular - NGX MASK</h1>
+
+<div>
+    <label>
+        Number
+    </label>
+    <input mask="0000-0000" [showMaskTyped]="true">
+</div>
+
+<div>
+    <label>
+        Phone
+    </label>
+    <input prefix="+91" mask="(000)-000 0000"  [showMaskTyped]="true">
+</div>
+
+<div>
+    <label>
+        Separator
+    </label>
+    <input  mask="separator" thousandSeparator="," [showMaskTyped]="true">
+</div>
+<div>
+    <label>
+        Allow negative
+    </label>
+    <input  mask="separator" [allowNegativeNumbers]="true" thousandSeparator="," [showMaskTyped]="true">
+</div>
+
+<div>
+    <label>
+        String data
+    </label>
+    <input  mask="S{3}"  [showMaskTyped]="true">
+</div>
+
+<div>
+    <label>
+        Date
+    </label>
+    <input  mask="Hh/m0/s0"  [showMaskTyped]="true">
+</div>
+
+<div>
+    <label>
+        Phone
+    </label>
+    <input mask="(XXX)-XXX 0000" [hiddenInput]="true"  [showMaskTyped]="true">
+</div>
+
+
