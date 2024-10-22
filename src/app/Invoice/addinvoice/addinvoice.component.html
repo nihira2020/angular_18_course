@@ -1,1 +1,124 @@
-<p>addinvoice works!</p>
+<form class="example-form" [formGroup]="invoiceform" (ngSubmit)="ProceedSave()">
+    <mat-card>
+        <mat-card-header>
+            <h2>{{title}}</h2>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-form-field class="mat-half-width">
+                <mat-label>Invoice No</mat-label>
+                <input matInput formControlName="invoiceno">
+            </mat-form-field>
+
+            <mat-form-field class="mat-half-width">
+                <mat-label>Invoice Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="invoicedate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="mat-half-width">
+                <mat-label>Customer</mat-label>
+                <mat-select (selectionChange)="Customerchange($event.value)" formControlName="customerno">
+
+                    @for (item of customerList; track item) {
+                    <mat-option [value]="item.id">{{item.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="mat-half-width">
+                <mat-label>Tax</mat-label>
+                <mat-select (selectionChange)="Taxchange($event.value)" formControlName="taxcode">
+                    @for (item of taxList; track item) {
+                    <mat-option [value]="item.id">{{item.id}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Delivery Address</mat-label>
+                <textarea style="width: 100%;" matInput formControlName="address"></textarea>
+            </mat-form-field>
+
+            <mat-card style="margin: 1px;width: 99%;">
+                <mat-card-content>
+                    <table class="table table-bordered" formArrayName="products">
+
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th style="width: 5%">Sl.No</th>
+                                <th style="width: 40%">Product Code</th>
+                                <th style="width: 15%">Qty</th>
+                                <th style="width: 15%">Price</th>
+                                <th style="width: 15%">Total</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of invproducts.controls;let i=index" [formGroupName]="i">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    <mat-form-field class="example-full-width">
+                                        <mat-select formControlName="productid" (selectionChange)="productchange(i)">
+                                            @for (item of masterproduct; track item) {
+                                            <mat-option [value]="item.id">{{item.name}}</mat-option>
+                                            }
+                                        </mat-select>
+                                    </mat-form-field>
+                                </td>
+
+                                <td>
+                                    <mat-form-field style="width: 90%;"><input matInput (change)="Itemcalculation(i)"
+                                            formControlName="qty"></mat-form-field>
+
+                                </td>
+                                <td>
+                                    <mat-form-field style="width: 90%;">
+                                        <input matInput (change)="Itemcalculation(i)" formControlName="price">
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field style="width: 90%;">
+                                        <input matInput formControlName="total">
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <a (click)="Removeproduct(i)" mat-raised-button color="accent">Remove</a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <a (click)="addnewproduct()" mat-raised-button>[+]</a>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+            <mat-card style="margin: 1px;width: 99%;">
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>Summary Total : <b>{{summaryTotal | currency}}</b> </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Summary Tax : <b>{{summaryTax | currency}}</b> </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>Summary Nettotal : <b>{{summaryNetTotal | currency}}</b> </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
+
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="submit" mat-raised-button color="primary">Save</button>
+            <a mat-raised-button color="accent" (click)="backtolist()">Cancel</a>
+        </mat-card-actions>
+
+    </mat-card>
+</form>

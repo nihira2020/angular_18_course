@@ -50,5 +50,94 @@
       "price": "11",
       "status": true
     }
+  ],
+  "invoice": [
+    {
+      "id": 1,
+      "customerid": "CS002",
+      "customername": "Ramesh Kannan",
+      "deliveryaddress": "2nd street, Nandan street, chennai 600021",
+      "nettotal": 38.52,
+      "totalqty": 2,
+      "total": 36,
+      "tax": 2.5200000000000005,
+      "products": [
+        {
+          "productid": 11,
+          "name": "tennis bat",
+          "qty": 1,
+          "price": "11",
+          "total": 11
+        },
+        {
+          "productid": 3,
+          "name": "Stumbber ball",
+          "qty": 1,
+          "price": "25",
+          "total": 25
+        }
+      ],
+      "invoicedate": "2024-10-22T16:32:11.929Z",
+      "taxcode": "Exclusive",
+      "taxtype": "Exclusive",
+      "taxperc": 7
+    },
+    {
+      "id": 2,
+      "customerid": "CS003",
+      "customername": "Kishore kumar",
+      "deliveryaddress": "3rd street, Nandan street, chennai 600021",
+      "nettotal": 11,
+      "totalqty": 1,
+      "total": 11,
+      "tax": 0,
+      "products": [
+        {
+          "productid": 11,
+          "name": "tennis bat",
+          "qty": 1,
+          "price": "11",
+          "total": 11
+        }
+      ],
+      "invoicedate": "2024-10-22T16:32:33.112Z",
+      "taxcode": "Zero",
+      "taxtype": "Zero",
+      "taxperc": 0
+    }
+  ],
+  "customer": [
+    {
+      "id": "CS001",
+      "name": "Ravi krishna",
+      "address": "1st street, Nandan street, chennai 600021",
+      "taxcode": "Inclusive"
+    },
+    {
+      "id": "CS002",
+      "name": "Ramesh Kannan",
+      "address": "2nd street, Nandan street, chennai 600021",
+      "taxcode": "Exclusive"
+    },
+    {
+      "id": "CS003",
+      "name": "Kishore kumar",
+      "address": "3rd street, Nandan street, chennai 600021",
+      "taxcode": "Zero"
+    }
+  ],
+  "tax": [
+    {
+      "id": "Inclusive",
+      "perc": 7
+    },
+    {
+      "id": "Exclusive",
+      "perc": 7
+    },
+    {
+      "id": "Zero",
+      "perc": 0
+    }
   ]
 }

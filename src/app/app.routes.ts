@@ -70,6 +70,9 @@ export const routes: Routes = [
         path: 'createinvoice', component: AddinvoiceComponent
     },
     {
+        path: 'editinvoice/:invoiceno', component: AddinvoiceComponent
+    },
+    {
         path: '**', component: StatusComponent
     }
 ];
